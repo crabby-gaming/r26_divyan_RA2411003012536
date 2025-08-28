@@ -1,4 +1,5 @@
 #include "planning.h"
+#include <algorithm> 
 #include <cmath>
 #include <vector>
 #include <queue>
@@ -7,13 +8,14 @@
 using namespace std;
 
 struct Node {
-  int x, y;
-  double f, g, h; // f = g + h
-  Node *parent;
+    double g, h, f;   // declare in this order
+    Node* parent;
+    int x, y;
 
-  Node(int x, int y, double g, double h, Node *p = nullptr)
-      : x(x), y(y), g(g), h(h), f(g + h), parent(p) {}
+    Node(int x, int y, double g, double h, Node* p = nullptr)
+        : g(g), h(h), f(g + h), parent(p), x(x), y(y) {}
 };
+
 
 // Comparator for priority queue (min-heap on f)
 struct CompareNode {

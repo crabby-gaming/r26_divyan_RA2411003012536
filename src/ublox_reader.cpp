@@ -31,12 +31,13 @@ static vector<uint8_t> hexToBytes(const string &rawHex) {
 }
 
 int decodeUBX(uint8_t *buffer, classId *gps) {
-  // buffer points at class field
-  if (buffer[2] == 0x01 && buffer[3] == 0x02) { // Class = NAV, ID = POSLLH
-    return NAV_POSLLH(buffer + 6, gps);         // skip length
-  }
-  return 1;
+    // Class = buffer[0], ID = buffer[1]
+    if (buffer[0] == 0x01 && buffer[1] == 0x02) { // NAV-POSLLH
+        return NAV_POSLLH(buffer + 4, gps); // payload starts at +4
+    }
+    return 1;
 }
+
 
 GPS gpsFromData(const classId &gps) {
   GPS out;
