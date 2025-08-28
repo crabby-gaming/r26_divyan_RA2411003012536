@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include "gridmap.h"
 #include "odometry.h"
 #include "planning.h"

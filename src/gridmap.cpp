@@ -1,9 +1,10 @@
+#define _USE_MATH_DEFINES
 #include "gridmap.h"
 #include <iostream>
 
 using namespace std;
 
-Gridmapper::Gridmapper(GPS origin, double cellsize, int rows, int cols)
+Gridmapper::Gridmapper(GPS origin, double cellsize, int rows, int cols) // remove
     : origin(origin), cellsize(cellsize), rows(rows), cols(cols),
       grid(rows, std::vector<bool>(cols, false)) {
   makemap();
